@@ -7,35 +7,54 @@
                     <h5 class="card-title text-center">Please enter your details</h5>
                     <?php echo form_open_multipart('Home/register_form', array('id' => 'myForm')); ?>
                     <div class="form-label-group">
-                        <label for=" fname">Full Name</label>
-                        <input type="fname" id="fname" name="fname" class="form-control" placeholder="Full Name" required autocomplete="off">
+                        <label for="fname">Full Name</label>
+                        <input type="fname" id="fname" name="fname" class="form-control" placeholder="Full Name" autocomplete="off">
                     </div>
                     <div class="form-label-group">
                         <label for="uImage">Photo</label>
-                        <input type="file" id="uImage" name="uImage" class="form-control" required>
+                        <input type="file" id="uImage" name="uImage" class="form-control">
                     </div>
                     <div class="form-label-group">
                         <label for=" uname">Username</label>
-                        <input type="uname" id="uname" name="uname" class="form-control" placeholder="Username" required autocomplete="off">
+                        <input type="uname" id="uname" name="uname" class="form-control" placeholder="Username" autocomplete="off">
                     </div>
                     <div class="form-label-group">
                         <label for="password">Password</label>
-                        <input type="password" id="password" name="password" class="form-control" placeholder="Password" required onkeyup="checkPasswordStrength(this.value)" autocomplete="off">
+                        <input type="password" id="password" name="password" class="form-control" placeholder="Password" onkeyup="checkPasswordStrength(this.value)" autocomplete="off">
                         <div id="password-strength-indicator"></div>
                     </div>
                     <div class=" form-label-group">
                         <label for="conpassword">Confirm Password</label>
-                        <input type="password" id="conpassword" name="conpassword" class="form-control" placeholder="Confirm Password" required>
+                        <input type="password" id="conpassword" name="conpassword" class="form-control" placeholder="Confirm Password">
                     </div>
+                    <div class="form-label-group">
+                        <label for="mnum">Mobile Number</label>
+                        <input type="tel" id="mnum" name="mnum" class="form-control" placeholder="Mobile Number" autocomplete="off">
+                    </div>
+                    <div class="form-label-group">
+                        <label for="birth_year">Birth Year</label>
+                        <select id="birth_year" name="birth_year" class="form-control">
+                            <?php
+                            $currentYear = date('Y');
+                            $startYear = 1950;
+                            $endYear = 2015;
 
-                    <div class="custom-control custom-checkbox mb-3">
-                        <input type="checkbox" class="custom-control-input" id="customCheck1">
-                        <label class="custom-control-label" for="customCheck1">Remember password?</label>
+                            for ($year = $endYear; $year >= $startYear; $year--) {
+                                echo "<option value='$year'>$year</option>";
+                            }
+                            ?>
+                        </select>
+                    </div>
+                    <div class="form-label-group">
+                        <label for="gender">Gender</label>
+                        <select id="gender" name="gender" class="form-control">
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="others">Others</option>
+                        </select>
                     </div>
                     <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
                     <hr class="my-4">
-                    <!-- <button class="btn btn-lg btn-google btn-block text-uppercase" type="submit"><i class="fab fa-google mr-2"></i> Sign in with Google</button>
-                        <button class="btn btn-lg btn-facebook btn-block text-uppercase" type="submit"><i class="fab fa-facebook-f mr-2"></i> Sign in with Facebook</button> -->
                     <?php echo form_close(); ?>
                     <p>Already have an account?</p>
                     <a href="<?php echo base_url('signin') ?>">Sign in</a>
@@ -44,45 +63,6 @@
         </div>
     </div>
 </div>
-
-<script>
-    function hideAlert() {
-        var overlay = document.getElementById('alert-overlay');
-        overlay.style.display = 'none';
-    }
-</script>
-
-<?php if ($this->session->flashdata('success')) : ?>
-    <div id="alert-overlay">
-        <div id="alert-content">
-            <?php echo $this->session->flashdata('success'); ?>
-            <button type="button" class="btn btn-primary" onclick="hideAlert()">OK</button>
-        </div>
-    </div>
-    <script>
-        // Show the overlay
-        var overlay = document.getElementById('alert-overlay');
-        overlay.style.display = 'block';
-    </script>
-<?php elseif ($this->session->flashdata('wrong')) : ?>
-    <div id="alert-overlay">
-        <div id="alert-content" style="background-color: #f44336;">
-            <?php echo $this->session->flashdata('wrong'); ?>
-            <button type="button" class="btn btn-danger" onclick="hideAlert()">OK</button>
-        </div>
-    </div>
-    <script>
-        // Show the overlay
-        var overlay = document.getElementById('alert-overlay');
-        overlay.style.display = 'block';
-    </script>
-<?php endif; ?>
-
-
-
-
-
-
 
 <script>
     function checkPasswordStrength(password) {

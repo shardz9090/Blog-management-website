@@ -56,8 +56,12 @@ $route['translate_uri_dashes'] = FALSE;
 $route['home'] = 'home/index';
 $route['about'] = 'home/about';
 $route['post'] = 'home/post';
-$route['contact'] = 'home/contact';
+$route['blogs'] = 'home/blogs';
 $route['signin'] = 'home/signin';
 $route['register'] = 'home/register';
 $route['logout'] = 'home/logout';
 $route['profile'] = 'home/profile';
+$route['detail'] = 'home/viewblog';
+$route['adminlogin'] = 'home/adminlogin';
+
+$route['view_blog/(:any)'] = 'home/view_blog/$1';

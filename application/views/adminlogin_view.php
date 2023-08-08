@@ -23,8 +23,6 @@
                     </div>
                     <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
                     <?php echo form_close(); ?>
-                    <a href="<?php echo base_url('register') ?>">Create Account</a>
-                    <a href="<?php echo base_url('adminlogin') ?>">Admin Login</a>
                 </div>
             </div>
         </div>

@@ -60,11 +60,8 @@
                 <a href="<?php echo base_url('home') ?>" class="nav-item nav-link <?php echo is_active_page('home') ? 'active' : ''; ?>">Home</a>
                 <a href="<?php echo base_url('about') ?>" class="nav-item nav-link <?php echo is_active_page('about') ? 'active' : ''; ?>">About</a>
                 <a href="<?php echo base_url('post') ?>" class="nav-item nav-link <?php echo is_active_page('post') ? 'active' : ''; ?>">Post</a>
-                <a href="<?php echo base_url('contact') ?>" class="nav-item nav-link <?php echo is_active_page('contact') ? 'active' : ''; ?>">Contact</a>
-
-
+                <a href="<?php echo base_url('blogs') ?>" class="nav-item nav-link <?php echo is_active_page('blogs') ? 'active' : ''; ?>">Blogs</a>
                 <?php if ($this->session->userdata('log') === 'logged') { ?>
-                    <!-- If the user is logged in, display their username and 'Sign Out' link -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <?php echo $this->session->userdata('uname'); ?>
@@ -75,7 +72,6 @@
                         </ul>
                     </li>
                 <?php } else { ?>
-                    <!-- If the user is not logged in, show the 'Sign In' link -->
                     <li>
                         <a href="<?= base_url('signin'); ?>" class="nav-item nav-link <?php echo is_active_page('signin') ? 'active' : ''; ?>">Sign In</a>
                     </li>
@@ -86,13 +82,12 @@
     </nav>
     <!-- Navbar End -->
 
-    <!-- JavaScript code to trigger the Bootstrap Modal -->
     <script>
         function showLogoutConfirmation() {
             $('#logoutConfirmationModal').modal('show');
         }
     </script>
-    <!-- Bootstrap Modal for confirmation alert -->
+
     <div class="modal fade" id="logoutConfirmationModal" tabindex="-1" aria-labelledby="logoutConfirmationModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -110,10 +105,3 @@
             </div>
         </div>
     </div>
-
-    <!-- JavaScript code to trigger the Bootstrap Modal -->
-    <script>
-        function showLogoutConfirmation() {
-            $('#logoutConfirmationModal').modal('show');
-        }
-    </script>

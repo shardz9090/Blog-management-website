@@ -15,10 +15,10 @@ class Home extends CI_Controller
     }
     public function index()
     {
-        echo $this->userid;
-        echo "helo wordl";
-        // $data['main'] = "index_view";
-        // $this->load->view('layouts/main_view', $data);
+        $blogs = $this->blog_model->get_all_blogs();
+        $data['blogs'] = $blogs;
+        $data['main'] = "index_view";
+        $this->load->view('layouts/main_view', $data);
     }
     public function about()
     {
@@ -35,9 +35,12 @@ class Home extends CI_Controller
         $data['main'] = "post_view";
         $this->load->view('layouts/main_view', $data);
     }
-    public function contact()
+    public function blogs()
     {
-        $data['main'] = "contact_view";
+        $logged_in_user = $this->session->userdata('uname');
+        $this->load->model('Blog_model');
+        $data['blogs'] = $this->blog_model->get_user_blogs($logged_in_user);
+        $data['main'] = "blogs_view";
         $this->load->view('layouts/main_view', $data);
     }
     public function register()
@@ -58,6 +61,24 @@ class Home extends CI_Controller
     public function profile()
     {
         $data['main'] = 'profile_view';
+        $this->load->view('layouts/main_view', $data);
+    }
+    public function viewblog()
+    {
+        $data['main'] = 'viewblog_view';
+        $this->load->view('layouts/main_view', $data);
+    }
+    public function view_blog($blog_id)
+    {
+        // Load the model
+        $this->load->model('blog_model');
+        $data['main'] = 'viewblog_view';
+        $data['blog'] = $this->blog_model->get_blog_by_id($blog_id);
+        $this->load->view('layouts/main_view', $data);
+    }
+    public function adminlogin()
+    {
+        $data['main'] = 'adminlogin_view';
         $this->load->view('layouts/main_view', $data);
     }
 
