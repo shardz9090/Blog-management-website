@@ -71,4 +71,14 @@ class blog_model extends CI_Model
         $query = $this->db->get('blogs');
         return $query->result_array();
     }
+    public function delete_user($uid)
+    {
+        $this->db->where('uid', $uid);
+        return $this->db->delete('user');
+    }
+    public function delete_blog($bid)
+    {
+        $this->db->where('bid', $bid);
+        return $this->db->delete('blogs');
+    }
 }

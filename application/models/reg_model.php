@@ -41,15 +41,15 @@ class reg_model extends CI_Model
                 $file_name = $file_data['file_name'];
 
                 $data = array(
-                    'FullName' => $fname,
-                    'aImage' => $file_name,
-                    'aname' => $uname,
+                    'fName' => $fname,
+                    'uImage' => $file_name,
+                    'uname' => $uname,
                     'password' => $password,
                     'gender' => $gender,
                     'birth_year' => $birth_year,
-                    'amnum' => $mnum,
+                    'mnum' => $mnum,
                 );
-                $this->db->insert('admin', $data);
+                $this->db->insert('user', $data);
                 $this->session->set_flashdata('success', 'The user has been register. Please proceed to login');
                 redirect('register');
             }

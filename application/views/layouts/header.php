@@ -7,9 +7,7 @@
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
-
-    <!-- Favicon -->
-    <link src="<?php echo base_url(); ?>assets/img/favicon.png" rel="icon">
+    <link rel="icon" href="<?php echo base_url('assets/img/favicon.ico'); ?>" type="image/x-icon">
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -58,7 +56,6 @@
                 }
                 ?>
                 <a href="<?php echo base_url('home') ?>" class="nav-item nav-link <?php echo is_active_page('home') ? 'active' : ''; ?>">Home</a>
-                <a href="<?php echo base_url('about') ?>" class="nav-item nav-link <?php echo is_active_page('about') ? 'active' : ''; ?>">About</a>
                 <a href="<?php echo base_url('post') ?>" class="nav-item nav-link <?php echo is_active_page('post') ? 'active' : ''; ?>">Post</a>
                 <a href="<?php echo base_url('blogs') ?>" class="nav-item nav-link <?php echo is_active_page('blogs') ? 'active' : ''; ?>">Blogs</a>
                 <?php if ($this->session->userdata('log') === 'logged') { ?>

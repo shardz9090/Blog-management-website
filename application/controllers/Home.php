@@ -9,21 +9,15 @@ class Home extends CI_Controller
         parent::__construct();
         $this->load->database();
         $this->load->library('session');
-        // $this->load->model('session_model');
-        // $data['user'] = $this->session_model->getdata();
         $this->userid = $this->session->userdata("uid");
     }
     public function index()
     {
         $blogs = $this->blog_model->get_all_blogs();
+        $products = $this->detail_model->products();
+        $data['products'] = $products;
         $data['blogs'] = $blogs;
         $data['main'] = "index_view";
-        $this->load->view('layouts/main_view', $data);
-    }
-    public function about()
-    {
-
-        $data['main'] = "about_view";
         $this->load->view('layouts/main_view', $data);
     }
     public function post()
@@ -37,6 +31,10 @@ class Home extends CI_Controller
     }
     public function blogs()
     {
+        if ($this->session->userdata('log') != 'logged') {
+            $this->session->set_flashdata('alert_message', 'Please signin to view this page');
+            redirect('signin');
+        }
         $logged_in_user = $this->session->userdata('uname');
         $this->load->model('Blog_model');
         $data['blogs'] = $this->blog_model->get_user_blogs($logged_in_user);
@@ -90,6 +88,19 @@ class Home extends CI_Controller
         $data['user_details'] = $this->detail_model->getUsers();
         $data['main'] = 'dashboard_view';
         $this->load->view('adminlayout/main_view', $data);
+    }
+
+    public function delete_user($uid)
+    {
+        $this->load->model('blog_model');
+        $this->blog_model->delete_user($uid);
+        redirect('admin');
+    }
+    public function delete_blog($bid)
+    {
+        $this->load->model('blog_model');
+        $this->blog_model->delete_blog($bid);
+        redirect('admin');
     }
 
 

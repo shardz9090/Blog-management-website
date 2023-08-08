@@ -3,11 +3,9 @@
 
 <script>
     $(document).ready(function() {
-        // Hide all content sections except dashboard on page load
         $('.section-content').hide();
         $('#usersContent').show();
 
-        // Button click event to show corresponding content
         $('.btn').click(function() {
             var target = $(this).data('target');
             $('.section-content').hide();
@@ -64,6 +62,7 @@
                                 <thead>
                                     <tr>
                                         <th>Name</th>
+                                        <th>User Name</th>
                                         <th>Gender</th>
                                         <th>Birth Year</th>
                                         <th>Action</th>
@@ -73,10 +72,11 @@
                                     <?php foreach ($user_details as $user) : ?>
                                         <tr>
                                             <td><?= $user['fname'] ?></td>
+                                            <td><?= $user['uname'] ?></td>
                                             <td><?= $user['gender'] ?></td>
                                             <td><?= $user['birth_year'] ?></td>
                                             <td>
-                                                <button class="btn1">Delete</button>
+                                                <a href="<?= base_url('home/delete_user/' . $user['uid']); ?>" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this user?')">Delete</a>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>
@@ -84,8 +84,6 @@
                             </table>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>
@@ -132,7 +130,7 @@
                                             <td><?= $blog['b_title']; ?></td>
                                             <td><?= $blog['uname']; ?></td>
                                             <td>
-                                                <button class="btn1">Delete</button>
+                                                <a href="<?= base_url('home/delete_blog/' . $blog['bid']); ?>" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this blog?')">Delete</a>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>
