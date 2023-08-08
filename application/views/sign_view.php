@@ -16,12 +16,12 @@
                     <div class="form-label-group">
                         <label for=" uname">Username</label>
                         <input type="uname" id="uname" name="uname" class="form-control" placeholder="Email address" autofocus>
-                    </div>
+                    </div><?php echo form_error('uname') ?>
                     </br>
                     <div class=" form-label-group">
                         <label for="password">Password</label>
                         <input type="password" id="password" name="password" class="form-control" placeholder="Password">
-                    </div>
+                    </div><?php echo form_error('password') ?>
                     </br>
                     <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
                     <?php echo form_close(); ?>

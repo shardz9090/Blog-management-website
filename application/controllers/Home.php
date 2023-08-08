@@ -107,8 +107,17 @@ class Home extends CI_Controller
     //FOR FORMS
     public function login_form()
     {
-        $this->load->model('reg_model');
-        $this->reg_model->login_user();
+        $this->form_validation->set_rules('uname', 'Username', 'required|min_length[5]');
+        $this->form_validation->set_rules('password', 'Password', 'required|min_length[8]');
+
+        if ($this->form_validation->run() === FALSE) {
+            $data['validation_errors'] = validation_errors();
+            $data['main'] = "sign_view";
+            $this->load->view('layouts/main_view', $data);
+        } else {
+            $this->load->model('reg_model');
+            $this->reg_model->login_user();
+        }
     }
     public function adminlogin_form()
     {
@@ -131,11 +140,12 @@ class Home extends CI_Controller
         $this->form_validation->set_rules('gender', 'Gender', 'required');
 
         if ($this->form_validation->run() === FALSE) {
-            // Validation failed, load your view with validation errors
-            $this->load->model('blog_model');
-            $this->reg_model->register_user();
+            $data['validation_errors'] = validation_errors();
+            $data['main'] = "register_view";
+            $this->load->view('layouts/main_view', $data);
         } else {
-            echo "error";
+            $this->load->model('reg_model');
+            $this->reg_model->register_user();
         }
     }
 }
