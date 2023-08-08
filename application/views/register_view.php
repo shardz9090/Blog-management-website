@@ -9,28 +9,28 @@
                     <div class="form-label-group">
                         <label for="fname">Full Name</label>
                         <input type="fname" id="fname" name="fname" class="form-control" placeholder="Full Name" autocomplete="off">
-                    </div>
+                    </div></br>
                     <div class="form-label-group">
                         <label for="uImage">Photo</label>
                         <input type="file" id="uImage" name="uImage" class="form-control">
-                    </div>
+                    </div></br>
                     <div class="form-label-group">
                         <label for=" uname">Username</label>
                         <input type="uname" id="uname" name="uname" class="form-control" placeholder="Username" autocomplete="off">
-                    </div>
+                    </div></br>
                     <div class="form-label-group">
                         <label for="password">Password</label>
                         <input type="password" id="password" name="password" class="form-control" placeholder="Password" onkeyup="checkPasswordStrength(this.value)" autocomplete="off">
                         <div id="password-strength-indicator"></div>
-                    </div>
+                    </div></br>
                     <div class=" form-label-group">
                         <label for="conpassword">Confirm Password</label>
                         <input type="password" id="conpassword" name="conpassword" class="form-control" placeholder="Confirm Password">
-                    </div>
+                    </div></br>
                     <div class="form-label-group">
                         <label for="mnum">Mobile Number</label>
                         <input type="tel" id="mnum" name="mnum" class="form-control" placeholder="Mobile Number" autocomplete="off">
-                    </div>
+                    </div></br>
                     <div class="form-label-group">
                         <label for="birth_year">Birth Year</label>
                         <select id="birth_year" name="birth_year" class="form-control">
@@ -44,7 +44,7 @@
                             }
                             ?>
                         </select>
-                    </div>
+                    </div></br>
                     <div class="form-label-group">
                         <label for="gender">Gender</label>
                         <select id="gender" name="gender" class="form-control">
@@ -52,8 +52,8 @@
                             <option value="female">Female</option>
                             <option value="others">Others</option>
                         </select>
-                    </div>
-                    <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Sign in</button>
+                    </div></br>
+                    <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Register</button>
                     <hr class="my-4">
                     <?php echo form_close(); ?>
                     <p>Already have an account?</p>

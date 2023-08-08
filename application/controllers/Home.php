@@ -81,6 +81,16 @@ class Home extends CI_Controller
         $data['main'] = 'adminlogin_view';
         $this->load->view('layouts/main_view', $data);
     }
+    public function adminview()
+    {
+        $this->load->model('detail_model');
+        $data['blog_count'] = $this->detail_model->getBlogCount();
+        $blogs = $this->blog_model->get_all_blogs();
+        $data['blogs'] = $blogs;
+        $data['user_details'] = $this->detail_model->getUsers();
+        $data['main'] = 'dashboard_view';
+        $this->load->view('adminlayout/main_view', $data);
+    }
 
 
 
@@ -89,6 +99,11 @@ class Home extends CI_Controller
     {
         $this->load->model('reg_model');
         $this->reg_model->login_user();
+    }
+    public function adminlogin_form()
+    {
+        $this->load->model('reg_model');
+        $this->reg_model->admin_login();
     }
     public function blog_form()
     {

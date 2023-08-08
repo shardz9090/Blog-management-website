@@ -63,5 +63,7 @@ $route['logout'] = 'home/logout';
 $route['profile'] = 'home/profile';
 $route['detail'] = 'home/viewblog';
 $route['adminlogin'] = 'home/adminlogin';
+$route['admin'] = 'home/adminview';
+
 
 $route['view_blog/(:any)'] = 'home/view_blog/$1';

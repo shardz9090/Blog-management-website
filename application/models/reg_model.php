@@ -17,10 +17,9 @@ class reg_model extends CI_Model
         $birth_year = $this->input->post('birth_year');
         $mnum = $this->input->post('mnum');
         $conpassword = $this->input->post('conpassword');
-        // Configure the upload parameters
-        $config['upload_path'] = './uploads/user_img/';
+        $config['upload_path'] = './uploads/admin_img/';
         $config['allowed_types'] = 'gif|jpg|png|jpeg|webp';
-        $config['max_size'] = 2048; // In kilobytes (KB)
+        $config['max_size'] = 2048;
         $this->upload->initialize($config);
 
         if ($password != $conpassword) {
@@ -42,15 +41,15 @@ class reg_model extends CI_Model
                 $file_name = $file_data['file_name'];
 
                 $data = array(
-                    'fname' => $fname,
-                    'uImage' => $file_name,
-                    'uname' => $uname,
+                    'FullName' => $fname,
+                    'aImage' => $file_name,
+                    'aname' => $uname,
                     'password' => $password,
                     'gender' => $gender,
                     'birth_year' => $birth_year,
-                    'mnum' => $mnum,
+                    'amnum' => $mnum,
                 );
-                $this->db->insert('user', $data);
+                $this->db->insert('admin', $data);
                 $this->session->set_flashdata('success', 'The user has been register. Please proceed to login');
                 redirect('register');
             }
@@ -68,19 +67,45 @@ class reg_model extends CI_Model
         $find_user = $query->num_rows();
 
         if ($find_user > 0) {
-            $this->session->set_userdata('uname', $query->row()->uname); //session name and parameter to send
-            $this->session->set_userdata('fname', $query->row()->fname); //session name and parameter to send
-            $this->session->set_userdata('uImage', $query->row()->uImage); //session name and parameter to send
+            $this->session->set_userdata('uname', $query->row()->uname);
+            $this->session->set_userdata('fname', $query->row()->fname);
+            $this->session->set_userdata('uImage', $query->row()->uImage);
             $this->session->set_userdata('birth_year', $query->row()->birth_year);
             $this->session->set_userdata('gender', $query->row()->gender);
             $this->session->set_userdata('mnum', $query->row()->mnum);
-            $this->session->set_userdata('log', 'logged'); //session name and parameter to send
+            $this->session->set_userdata('log', 'logged');
 
             $this->session->set_flashdata('success', 'You are logged in');
             redirect('Home/');
         } else {
             $this->session->set_flashdata('warning', 'The credentials dont match');
             redirect('Home/signin');
+        }
+    }
+
+    public function admin_login()
+    {
+        $aname = $this->input->post('aname');
+        $password = $this->input->post('password');
+        $this->db->where('aname', $aname);
+        $this->db->where('password', $password);
+        $query = $this->db->get('admin');
+        $find_user = $query->num_rows();
+
+        if ($find_user > 0) {
+            $this->session->set_userdata('aname', $query->row()->aname);
+            $this->session->set_userdata('FullName', $query->row()->FullName);
+            $this->session->set_userdata('aImage', $query->row()->aImage);
+            $this->session->set_userdata('birth_year', $query->row()->birth_year);
+            $this->session->set_userdata('gender', $query->row()->gender);
+            $this->session->set_userdata('amnum', $query->row()->amnum);
+            $this->session->set_userdata('log', 'logged');
+
+            $this->session->set_flashdata('success', 'You are logged in');
+            redirect('admin');
+        } else {
+            $this->session->set_flashdata('warning', 'The credentials dont match');
+            redirect('adminlogin');
         }
     }
 }
