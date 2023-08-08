@@ -9,13 +9,12 @@ class Home extends CI_Controller
         parent::__construct();
         $this->load->database();
         $this->load->library('session');
+        $this->load->library('form_validation');
         $this->userid = $this->session->userdata("uid");
     }
     public function index()
     {
         $blogs = $this->blog_model->get_all_blogs();
-        $products = $this->detail_model->products();
-        $data['products'] = $products;
         $data['blogs'] = $blogs;
         $data['main'] = "index_view";
         $this->load->view('layouts/main_view', $data);
@@ -123,7 +122,20 @@ class Home extends CI_Controller
     }
     public function register_form()
     {
-        $this->load->model('blog_model');
-        $this->reg_model->register_user();
+        $this->form_validation->set_rules('fname', 'Full Name', 'required');
+        $this->form_validation->set_rules('uname', 'Username', 'required|min_length[5]');
+        $this->form_validation->set_rules('password', 'Password', 'required|min_length[8]');
+        $this->form_validation->set_rules('conpassword', 'Confirm Password', 'required|matches[password]');
+        $this->form_validation->set_rules('mnum', 'Mobile Number', 'required|numeric');
+        $this->form_validation->set_rules('birth_year', 'Birth Year', 'required');
+        $this->form_validation->set_rules('gender', 'Gender', 'required');
+
+        if ($this->form_validation->run() === FALSE) {
+            // Validation failed, load your view with validation errors
+            $this->load->model('blog_model');
+            $this->reg_model->register_user();
+        } else {
+            echo "error";
+        }
     }
 }
